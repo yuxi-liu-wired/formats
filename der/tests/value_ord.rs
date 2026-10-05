@@ -35,8 +35,11 @@ fn set_of_with_absent_optional_field() {
     set.insert(N2.clone()).unwrap();
     set.insert(N1.clone()).unwrap();
     assert_eq!(set.to_der().unwrap(), hex!("310a 3003020101 3003020102"));
+}
 
-    // the reverse order is not DER
+/// The reverse order is not DER.
+#[test]
+fn set_of_with_absent_optional_field_reverse_should_fail() {
     let wrong = hex!("310a 3003020102 3003020101");
     assert!(SetOfRef::<S>::from_der(&wrong).is_err());
 }
